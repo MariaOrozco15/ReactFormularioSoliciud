@@ -1,428 +1,448 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formulario</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
+    />
+  </head>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
-</head>
+  <body
+    class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white"
+    style="
+      background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/003.webp');
+    "
+  >
+    <div id="todalaAPP"></div>
 
-<body>
-  <div id="todalaAPP"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
+      integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
-    integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
-    crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/jsx">
+        const todalaAPP = document.getElementById("todalaAPP");
 
-  <script type="text/jsx">
-      const todalaAPP = document.getElementById("todalaAPP");
-
-      var Item = ({ text, url, icon }) => {
-        return (
-          <li>
-            <a href={url} className="nav-link">
-              {text + " "}
-              <i className={icon}></i>
-            </a>
-          </li>
-        );
-      };
-      //Encabezado de forma.
-      var Encabezado = () => {
-        return (
-          <div className="container">
-            <header className="d-flex flex-wrap justify-content-center py-3 mb-U4 border-bottom">
-              <a
-                href="#"
-                className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
-              >
-                <span className="fs-U4">WW SOLAR</span>
+        var Item = ({ text, url, icon }) => {
+          return (
+            <li>
+              <a href={url} className="nav-link text-dark">
+                {text + " "}
+                <i className={icon}></i>
               </a>
-              <ul className="nav nav-pills">
-                <Item
-                  text="Facebook"
-                  url="https :// ww. facebook.com/eliabjselvacruz"
-                  icon="bi-facebook"
-                />
-                <Item
-                  text="WhatsApp"
-                  url="https://api.whatsapp.com/send?phone=+50587373581&text=Hola, GREY."
-                  icon="bi-whatsapp"
-                />
-              </ul>
-            </header>
-          </div>
-        );
-        }
-
-        var Input = ({col, f, text, name, type, id, placeholder, textVF="¡Correcto! 😺", textIF}) =>{
-
-        var ValidText = (text) => {
-            if (text=="") {
-                return "¡Correcto! 😺"
-            }
-            else{
-                return text
-            }
-        }
-        return(
-            <div className={col}>
-                <label htmlFor={f} className="form-label">{text}</label>
-                <input name={name} type={type} className="form-control" id={id}
-                placeholder={placeholder} required />
-                <div className="valid-feedback">
-                   {
-
-                    ValidText(textVF)
-
-                   }
-                </div>
-                    <div className="invalid-feedback">
-
-                        Debe ingresar {textIF}. 😾
-                    </div>
-
-
-            </div>
-        );
-      }
-    
-
-      var InputSelect = ({col, f, text, name, id, options}) =>{
-
-        return(
-            <div className={col}>
-                <label htmlFor={f} className="form-label"> {text}</label>
-                <select name={name} className="form-select" id={id} required>
-                    {
-                        options.map((op)=> (
-                            <option value={op}>{op}</option>
-                        ))
-                    }
-
-                </select>
-
-                    <div className="valid-feedback">
-                        "¡Correcto! 😺"
-
-                    </div>
-
-            </div>
-        );
-      }
-
-      var InputDate =({col, f, text, name, type, id}) =>{
-
-        return (
-            <div className={col}>
-                <label htmlFor={f} className="form-label">{text} </label>
-                <input name={name} type={type} className="form-control" id={id} disable/>
-
-            </div>
-        )
-      }
-
-     
-
-      var Formulario =() =>{
-
-        var ops= ["Femenino", "Masculino", "Otros"]
-        var civil= ["Soltero", "Casado", "Unión estable"]
-        var grado= ["Primaria", "Secundaria", "Universidad"]
-
-        return(
-            
-            <div className="px-4 text-center" >
-                <div className="container">
-                    <main>
-                        <h4 className="mb-3 mt-2"> Registro de solicitud de empleo </h4>
-                        <div>
-                            <div className="row g-3">
-                            <Input
-                                col="col-6 col-sm-3"
-                                f= "nombre"
-                                text="Nombre"
-                                name="nombre"
-                                type="text"
-                                id="nombre"
-                                placeholder="Ingrese su nombre"
-                                textIF="Su nombre"
-
-                            />
-
-                            <Input
-                                col="col-6 col-sm-3"
-                                f= "domicilio"
-                                text="Domicilio"
-                                name="domicilio"
-                                type="text"
-                                id="domicilio"
-                                placeholder="Ingrese su domicilio"
-                                textIF="Su domicilio"
-                            
-                            />
-                         
-
-                            <Input
-                                col="col-6 col-sm-3"
-                                f= "lugarnacimiento"
-                                text="Lugar de nacimiento"
-                                name="lugarnacimiento"
-                                type="text"
-                                id="lugarnacimiento"
-                                placeholder="Ingrese su lugar de nacimiento"
-                                textIF="Su lugar de nacimiento"
-                            
-                            />
-
-                            <Input
-                                col="col-6 col-sm-3"
-                                f= "postal"
-                                text="Código postal"
-                                name="postal"
-                                type="number"
-                                id="postal"
-                                placeholder="Ingrese su código postal"
-                                textIF="Su código postal"
-                            
-                            />
-
-                            <Input
-                                col="col-6 col-sm-3"
-                                f= "edad"
-                                text="Edad"
-                                name="edad"
-                                type="number"
-                                id="edad"
-                                placeholder="Ingrese su edad"
-                                textIF="Su edad"
-                            
-                            />
-
-                            <Input
-                                col="col-6 col-sm-3"
-                                f= "telefono"
-                                text="Telefono"
-                                name="telefono"
-                                type="text"
-                                id="telefono"
-                                placeholder="Ingrese su télefono"
-                                textIF="Su télefono"
-                            
-                            />
-                            <InputDate
-                                col="col-6 col-sm-3"
-                                f= "fecha"
-                                text="Fecha"
-                                name="Fecha-Generacion-Solicitud"
-                                type="date"
-                                id="fecha"
-                        
-                            />
-
-                           <InputSelect
-                                col="col-6 col-sm-3"
-                                f= "genero"
-                                text="Genero"
-                                name="genero"
-                                id="genero"
-                                options={ops}
-                           
-                           /> 
-
-                        <InputSelect
-                           col="col-6 col-sm-3"
-                           f= "estadocivil"
-                           text="Estado Civil"
-                           name="estadocivil"
-                           id="estadocivil"
-                           options={civil}
-                      
-                      /> 
-
-                         <Input
-                                col="col-6 col-sm-3"
-                                f= "email"
-                                text="Email"
-                                name="email"
-                                type="email"
-                                id="email"
-                                placeholder="Ingrese su email"
-                                textIF="Su email"
-                            
-                            />
-
-                        <Input
-                            col="col-6 col-sm-3"
-                            f= "cedula"
-                            text="Cédula"
-                            name="cedula"
-                            type="text"
-                            id="cedula"
-                            placeholder="Ingrese su cédula"
-                            textIF="Su cédula"
-                        
-                        />
-
-                        <Input
-                            col="col-6 col-sm-3"
-                            f= "departamento"
-                            text="Departamento"
-                            name="departamento"
-                            type="text"
-                            id="departamento"
-                            placeholder="Ingrese su departamento"
-                            textIF="Su departamento"
-                    
-                        />
-
-                        <InputSelect
-                            col="col-6 col-sm-3"
-                            f= "grado"
-                            text="Grado académico"
-                            name="grado"
-                            id="grado"
-                            options={grado}
-                   
-                        /> 
-
-                        <Input
-                            col="col-6 col-sm-3"
-                            f= "sangre"
-                            text="Tipo de sangre"
-                            name="sangre"
-                            type="text"
-                            id="sangre"
-                            placeholder="Ingrese su tipo de sangre"
-                            textIF="Su tipo de sangre"
-                    
-                        />
-                      
-
-
-                        </div>
-
-                        </div>
-
-                    </main>
-
-                </div>
-
-
-            </div>
-        );
-      }
-          class Boton extends React.Component {
-      handleClick() {
-        const form = document.getElementById("miFormulario");
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-          form.classList.add('was-validated');
-        } else {
-          const nombre=document.getElementById('nombre').value;
-          const domicilio=document.getElementById('domicilio').value;
-          const lugarnacimiento=document.getElementById('lugarnacimiento').value;
-          const postal=document.getElementById('postal').value;
-          const edad=document.getElementById('edad').value;
-          const telefono=document.getElementById('telefono').value;
-          const fecha=document.getElementById('fecha').value;
-          const genero=document.getElementById('genero').value;
-          const estadocivil=document.getElementById('estadocivil').value;
-          const email=document.getElementById('email').value;
-          const cedula=document.getElementById('cedula').value;
-          const departamento=document.getElementById('departamento').value;
-          const grado=document.getElementById('grado').value;
-          const sangre=document.getElementById('sangre').value;
-         
-          
-          const doc=new jsPDF();
-
-          doc.text(10,20,"Nombre"+nombre);
-          
-          doc.text(10,30,"Domicilio"+domicilio);
-          
-          doc.text(10,40,"Lugar de nacimiento"+lugarnacimiento);
-          
-          doc.text(10,50,"Codigo postal"+postal);
-          
-          doc.text(10,60,"Edad"+edad);
-          
-          doc.text(10,70,"Telefono"+telefono);
-          
-          doc.text(10,80,"Fecha de nacimiento"+fecha);
-          
-          doc.text(10,90,"Genero"+genero);
-          
-          doc.text(10,100,"Estado civil"+estadocivil);
-          
-          doc.text(10,110,"Email"+email);
-          
-          doc.text(10,120,"Cedula"+cedula);
-          
-          doc.text(10,130,"Ciudad"+departamento);
-          
-          doc.text(10,140,"Grado academico"+grado);
-        
-          doc.text(10,150,"Tipo de sangre"+sangre);
-          
-          
-          
-        
-          doc.save("Test.pdf");
-        }
-      }
-
-      render() {
-        return (
-          <div className="px-4 text-center">
+            </li>
+          );
+        };
+        //Encabezado de forma.
+        var Encabezado = () => {
+          return (
             <div className="container">
-              <main>
-                <form id="miFormulario" className="needs-validation mt-5" method="POST" action="https://formsubmit.co/stevengreyvin00@gmail.com"
-                  noValidate>
-
-                  <Formulario/>
-
-
-                  <hr className="mt-5"></hr>
-                  <button onClick={this.handleClick.bind(this)} type="submit" className="btn btn-danger btn-lg">
-                    Generar Cita
-                  </button>
-                  <hr />
-                </form>
-              </main>
+              <header className="d-flex flex-wrap justify-content-center py-3 mb-U4 border-bottom">
+                <a
+                  href="#"
+                  className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
+                >
+                  <span className="fs-U4 text-white">SOLICITUD</span>
+                </a>
+                <ul className="nav nav-pills">
+                    <Item
+                    text="Facebook"
+                    url="https://www.facebook.com/maria.chavarria.52459/"
+                    icon="bi-facebook"
+                  />
+                  <Item
+                    text="WhatsApp"
+                    url="https://api.whatsapp.com/send?phone=+50587373581&text=Hola, GREY."
+                    icon="bi-whatsapp"
+                  />
+                  <Item
+                    text="Instagram"
+                    url="https://www.instagram.com/maryorozco55/"
+                    icon="bi-instagram"
+                  />
+                  <Item
+                  text="Youtube"
+                  url="https://www.youtube.com/channel/UC8tHHB-m0WRSHltcj-_eVJQ"
+                  icon="bi-youtube"
+                />
+                <Item
+                text="GitHub"
+                url="https://github.com/MariaOrozco15"
+                icon="bi-github"
+              />
+                </ul>
+              </header>
             </div>
-          </div>
-        );
+          );
+          }
+
+          var Input = ({col, f, text, name, type, id, placeholder, textVF="¡Correcto! 😺", textIF}) =>{
+
+          var ValidText = (text) => {
+              if (text=="") {
+                  return "¡Correcto! 😺"
+              }
+              else{
+                  return text
+              }
+          }
+          return(
+              <div className={col}>
+                  <label htmlFor={f} className="form-label">{text}</label>
+                  <input name={name} type={type} className="form-control" id={id}
+                  placeholder={placeholder} required />
+                  <div className="valid-feedback">
+                     {
+
+                      ValidText(textVF)
+
+                     }
+                  </div>
+                      <div className="invalid-feedback">
+
+                          Debe ingresar {textIF}. 😾
+                      </div>
+
+
+              </div>
+          );
+        }
+
+
+        var InputSelect = ({col, f, text, name, id, options}) =>{
+
+          return(
+              <div className={col}>
+                  <label htmlFor={f} className="form-label"> {text}</label>
+                  <select name={name} className="form-select" id={id} required>
+                      {
+                          options.map((op)=> (
+                              <option value={op}>{op}</option>
+                          ))
+                      }
+
+                  </select>
+
+                      <div className="valid-feedback">
+                          "¡Correcto! 😺"
+
+                      </div>
+
+              </div>
+          );
+        }
+
+        var InputDate =({col, f, text, name, type, id}) =>{
+
+          return (
+              <div className={col}>
+                  <label htmlFor={f} className="form-label">{text} </label>
+                  <input name={name} type={type} className="form-control" id={id} disable/>
+
+              </div>
+          )
+        }
+
+
+
+        var Formulario =() =>{
+
+          var ops= ["Femenino", "Masculino", "Otros"]
+          var civil= ["Soltero", "Casado", "Unión estable"]
+          var grado= ["Primaria", "Secundaria", "Universidad"]
+
+          return(
+
+              <div className="px-4 text-center" >
+                  <div className="container">
+                      <main>
+                          <h4 className="mb-3 mt-2"> Registro de solicitud de empleo </h4>
+                          <div>
+                              <div className="row g-3">
+                              <Input
+                                  col="col-6 col-sm-3"
+                                  f= "nombre"
+                                  text="Nombre"
+                                  name="nombre"
+                                  type="text"
+                                  id="nombre"
+                                  placeholder="Ingrese su nombre"
+                                  textIF="Su nombre"
+
+                                />
+
+                              <Input
+                                  col="col-6 col-sm-3"
+                                  f= "domicilio"
+                                  text="Domicilio"
+                                  name="domicilio"
+                                  type="text"
+                                  id="domicilio"
+                                  placeholder="Ingrese su domicilio"
+                                  textIF="Su domicilio"
+
+                                />
+
+
+                              <Input
+                                  col="col-6 col-sm-3"
+                                  f= "lugarnacimiento"
+                                  text="Lugar de nacimiento"
+                                  name="lugarnacimiento"
+                                  type="text"
+                                  id="lugarnacimiento"
+                                  placeholder="Ingrese su lugar de nacimiento"
+                                  textIF="Su lugar de nacimiento"
+
+                                />
+
+                              <Input
+                                  col="col-6 col-sm-3"
+                                  f= "postal"
+                                  text="Código postal"
+                                  name="postal"
+                                  type="number"
+                                  id="postal"
+                                  placeholder="Ingrese su código postal"
+                                  textIF="Su código postal"
+
+                                />
+
+                              <Input
+                                  col="col-6 col-sm-3"
+                                  f= "edad"
+                                  text="Edad"
+                                  name="edad"
+                                  type="number"
+                                  id="edad"
+                                  placeholder="Ingrese su edad"
+                                  textIF="Su edad"
+
+                                />
+
+                              <Input
+                                  col="col-6 col-sm-3"
+                                  f= "telefono"
+                                  text="Telefono"
+                                  name="telefono"
+                                  type="text"
+                                  id="telefono"
+                                  placeholder="Ingrese su télefono"
+                                  textIF="Su télefono"
+
+                                />
+                              <InputDate
+                                  col="col-6 col-sm-3"
+                                  f= "fecha"
+                                  text="Fecha"
+                                  name="Fecha-Generacion-Solicitud"
+                                  type="date"
+                                  id="fecha"
+
+                                />
+
+                             <InputSelect
+                                  col="col-6 col-sm-3"
+                                  f= "genero"
+                                  text="Genero"
+                                  name="genero"
+                                  id="genero"
+                                  options={ops}
+
+                                />
+
+                          <InputSelect
+                             col="col-6 col-sm-3"
+                             f= "estadocivil"
+                             text="Estado Civil"
+                             name="estadocivil"
+                             id="estadocivil"
+                             options={civil}
+
+                            />
+
+                           <Input
+                                  col="col-6 col-sm-3"
+                                  f= "email"
+                                  text="Email"
+                                  name="email"
+                                  type="email"
+                                  id="email"
+                                  placeholder="Ingrese su email"
+                                  textIF="Su email"
+
+                            />
+
+                          <Input
+                              col="col-6 col-sm-3"
+                              f= "cedula"
+                              text="Cédula"
+                              name="cedula"
+                              type="text"
+                              id="cedula"
+                              placeholder="Ingrese su cédula"
+                              textIF="Su cédula"
+
+                            />
+
+                          <Input
+                              col="col-6 col-sm-3"
+                              f= "departamento"
+                              text="Departamento"
+                              name="departamento"
+                              type="text"
+                              id="departamento"
+                              placeholder="Ingrese su departamento"
+                              textIF="Su departamento"
+
+                            />
+
+                          <InputSelect
+                              col="col-6 col-sm-3"
+                              f= "grado"
+                              text="Grado académico"
+                              name="grado"
+                              id="grado"
+                              options={grado}
+
+                            />
+
+                          <Input
+                              col="col-6 col-sm-3"
+                              f= "sangre"
+                              text="Tipo de sangre"
+                              name="sangre"
+                              type="text"
+                              id="sangre"
+                              placeholder="Ingrese su tipo de sangre"
+                              textIF="Su tipo de sangre"
+
+                            />
+                          </div>
+
+                          </div>
+
+                      </main>
+
+                  </div>
+
+
+              </div>
+          );
+        }
+            class Boton extends React.Component {
+        handleClick() {
+          const form = document.getElementById("miFormulario");
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            form.classList.add('was-validated');
+          } else {
+            const nombre=document.getElementById('nombre').value;
+            const domicilio=document.getElementById('domicilio').value;
+            const lugarnacimiento=document.getElementById('lugarnacimiento').value;
+            const postal=document.getElementById('postal').value;
+            const edad=document.getElementById('edad').value;
+            const telefono=document.getElementById('telefono').value;
+            const fecha=document.getElementById('fecha').value;
+            const genero=document.getElementById('genero').value;
+            const estadocivil=document.getElementById('estadocivil').value;
+            const email=document.getElementById('email').value;
+            const cedula=document.getElementById('cedula').value;
+            const departamento=document.getElementById('departamento').value;
+            const grado=document.getElementById('grado').value;
+            const sangre=document.getElementById('sangre').value;
+
+
+            const doc=new jsPDF();
+
+            doc.text(10,20,"Nombre"+nombre);
+
+            doc.text(10,30,"Domicilio"+domicilio);
+
+            doc.text(10,40,"Lugar de nacimiento"+lugarnacimiento);
+
+            doc.text(10,50,"Codigo postal"+postal);
+
+            doc.text(10,60,"Edad"+edad);
+
+            doc.text(10,70,"Telefono"+telefono);
+
+            doc.text(10,80,"Fecha de nacimiento"+fecha);
+
+            doc.text(10,90,"Genero"+genero);
+
+            doc.text(10,100,"Estado civil"+estadocivil);
+
+            doc.text(10,110,"Email"+email);
+
+            doc.text(10,120,"Cedula"+cedula);
+
+            doc.text(10,130,"Ciudad"+departamento);
+
+            doc.text(10,140,"Grado academico"+grado);
+
+            doc.text(10,150,"Tipo de sangre"+sangre);
+
+
+
+
+            doc.save("Test.pdf");
+          }
+        }
+
+        render() {
+          return (
+            <div className="px-4 text-center">
+              <div className="container">
+                <main>
+                  <form id="miFormulario" className="needs-validation mt-5" method="POST" action="https://formsubmit.co/stevengreyvin00@gmail.com"
+                    noValidate>
+
+                    <Formulario/>
+
+
+                    <hr className="mt-5"></hr>
+                    <button onClick={this.handleClick.bind(this)} type="submit" className="btn btn-primary btn-lg">
+                      Generar Cita
+                    </button>
+                    <hr />
+                  </form>
+                </main>
+              </div>
+            </div>
+          );
+        }
       }
-    }
-
-      
-
-      function HomePage() {
-        return (
-          <div>
-            <Encabezado />
-            <Boton />
-           
-          </div>
-        );
-      }
-
-      ReactDOM.render(<HomePage />, todalaAPP);
 
 
+
+        function HomePage() {
+          return (
+            <div>
+              <Encabezado />
+              <Boton />
+
+            </div>
+          );
+        }
+
+        ReactDOM.render(<HomePage />, todalaAPP);
     </script>
-
-
-</body>
-
+  </body>
 </html>
