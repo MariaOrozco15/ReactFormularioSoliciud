@@ -22,7 +22,7 @@
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <script type="text/javascript">
+  <script type="text/jsx">
       const todalaAPP = document.getElementById("todalaAPP");
 
       var Item = ({ text, url, icon }) => {
@@ -320,6 +320,90 @@
             </div>
         );
       }
+          class Boton extends React.Component {
+      handleClick() {
+        const form = document.getElementById("miFormulario");
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+          form.classList.add('was-validated');
+        } else {
+          const nombre=document.getElementById('nombre').value;
+          const domicilio=document.getElementById('domicilio').value;
+          const lugarnacimiento=document.getElementById('lugarnacimiento').value;
+          const postal=document.getElementById('postal').value;
+          const edad=document.getElementById('edad').value;
+          const telefono=document.getElementById('telefono').value;
+          const fecha=document.getElementById('fecha').value;
+          const genero=document.getElementById('genero').value;
+          const estadocivil=document.getElementById('estadocivil').value;
+          const email=document.getElementById('email').value;
+          const cedula=document.getElementById('cedula').value;
+          const departamento=document.getElementById('departamento').value;
+          const grado=document.getElementById('grado').value;
+          const sangre=document.getElementById('sangre').value;
+         
+          
+          const doc=new jsPDF();
+
+          doc.text(10,20,"Nombre"+nombre);
+          
+          doc.text(10,30,"Domicilio"+domicilio);
+          
+          doc.text(10,40,"Lugar de nacimiento"+lugarnacimiento);
+          
+          doc.text(10,50,"Codigo postal"+postal);
+          
+          doc.text(10,60,"Edad"+edad);
+          
+          doc.text(10,70,"Telefono"+telefono);
+          
+          doc.text(10,80,"Fecha de nacimiento"+fecha);
+          
+          doc.text(10,90,"Genero"+genero);
+          
+          doc.text(10,100,"Estado civil"+estadocivil);
+          
+          doc.text(10,110,"Email"+email);
+          
+          doc.text(10,120,"Cedula"+cedula);
+          
+          doc.text(10,130,"Ciudad"+departamento);
+          
+          doc.text(10,140,"Grado academico"+grado);
+        
+          doc.text(10,150,"Tipo de sangre"+sangre);
+          
+          
+          
+        
+          doc.save("Test.pdf");
+        }
+      }
+
+      render() {
+        return (
+          <div className="px-4 text-center">
+            <div className="container">
+              <main>
+                <form id="miFormulario" className="needs-validation mt-5" method="POST" action="https://formsubmit.co/stevengreyvin00@gmail.com"
+                  noValidate>
+
+                  <Formulario/>
+
+
+                  <hr className="mt-5"></hr>
+                  <button onClick={this.handleClick.bind(this)} type="submit" className="btn btn-danger btn-lg">
+                    Generar Cita
+                  </button>
+                  <hr />
+                </form>
+              </main>
+            </div>
+          </div>
+        );
+      }
+    }
 
       
 
